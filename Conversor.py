@@ -15,12 +15,14 @@ class Conversor:
         self.pies=StringVar()
         self.metros=StringVar()
 
-        mainFrame=ttk.Frame(raiz)
+                                #padding izq, arriba, derech, abajo
+        mainFrame=ttk.Frame(raiz, padding="3 3 12 12")
         mainFrame.grid(column=0, row=0)
 
-        piesEntry=ttk.Entry(mainFrame, textvariable=self.pies)
+        piesEntry=ttk.Entry(mainFrame, width=7, textvariable=self.pies)
         piesEntry.grid(column=1, row=0)
 
+        #sticky=(W,E,N,S) para centrar
         ttk.Label(mainFrame, text="Pies").grid(column=2, row=0)
         ttk.Label(mainFrame, text="Son equivalentes").grid(column=0, row=1)
         ttk.Label(mainFrame, textvariable=self.metros).grid(column=1, row=1)
@@ -28,6 +30,7 @@ class Conversor:
 
         ttk.Button(mainFrame, text="Calcular", command=self.calcular).grid(column=2,row=2)
         
+        piesEntry.focus()
         #Hcer que funcione con enter
         raiz.bind("<Return>", self.calcular)
     
@@ -35,11 +38,13 @@ class Conversor:
         print("Boton Presionado")
         piesUsuario = float(self.pies.get()) #siempre devuelve la cadena.
         print("Pies ingresados: ", piesUsuario)
+        #try:
         piesFlotate = float(piesUsuario) #Conversion de cadena a flotante.
         metros= piesFlotate*0.3048
         print("Pies ingresados: ", piesUsuario)
         print("Metros: ",metros)
         self.metros.set(metros)
+        
 
     if __name__=="__main__":
         print("Este es el archivo Principal. ")
